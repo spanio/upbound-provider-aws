@@ -26,5 +26,39 @@ func Configure(p *config.Provider) {
 			Type: "github.com/upbound/provider-aws/apis/ec2/v1beta1.SecurityGroup",
 		}
 		r.UseAsync = true
+		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
+			conn := map[string][]byte{}
+			if a, ok := attr["bootstrap_brokers"].(string); ok {
+				conn["bootstrap_brokers"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_sasl_iam"].(string); ok {
+				conn["bootstrap_brokers_sasl_iam"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_sasl_scram"].(string); ok {
+				conn["bootstrap_brokers_sasl_scram"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_tls"].(string); ok {
+				conn["bootstrap_brokers_tls"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_public"].(string); ok {
+				conn["bootstrap_brokers_public"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_public_sasl_iam"].(string); ok {
+				conn["bootstrap_brokers_public_sasl_iam"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_public_sasl_scram"].(string); ok {
+				conn["bootstrap_brokers_public_sasl_scram"] = []byte(a)
+			}
+			if a, ok := attr["bootstrap_brokers_public_tls"].(string); ok {
+				conn["bootstrap_brokers_public_tls"] = []byte(a)
+			}
+			if a, ok := attr["zookeeper_connect_string"].(string); ok {
+				conn["zookeeper_connect_string"] = []byte(a)
+			}
+			if a, ok := attr["zookeeper_connect_string_tls"].(string); ok {
+				conn["zookeeper_connect_string_tls"] = []byte(a)
+			}
+			return conn, nil
+		}
 	})
 }
