@@ -7,7 +7,7 @@ weight: 2
 # AWS official provider documentation
 Upbound supports and maintains the Upbound AWS official provider.
 
-## Install the provider
+## Install the provider-aws
 ### Prerequisites
 #### Upbound Up command-line
 The Upbound Up command-line simplifies configuration and management of Upbound
@@ -36,7 +36,7 @@ documentation](https://docs.upbound.io/uxp/).
 
 _The Upbound AWS official provider may also be used with upstream [Crossplane](https://crossplane.io/docs/master/getting-started/install-configure.html)._
 
-### Install the provider
+### Install the provider-aws
 
 Install the Upbound official AWS provider with the following configuration file
 
@@ -49,16 +49,16 @@ spec:
   package: xpkg.upbound.io/upbound/provider-aws:<version>
 ```
 
-Define the provider version with `spec.package`.
+Define the provider-aws version with `spec.package`.
 
-Install the provider with `kubectl apply -f`.
+Install the provider-aws with `kubectl apply -f`.
 
 Verify the configuration with `kubectl get providers`.
 
 ```shell
 $ kubectl get providers
 NAME           INSTALLED   HEALTHY   PACKAGE                                       AGE
-provider-aws   True        True      xpkg.upbound.io/upbound/provider-aws:v0.17.0  62s
+provider-aws   True        True      xpkg.upbound.io/upbound/provider-aws:v0.41.0  62s
 ```
 
 View the Crossplane [Provider CRD

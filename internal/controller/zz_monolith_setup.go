@@ -124,6 +124,7 @@ import (
 	vaultlockconfiguration "github.com/upbound/provider-aws/internal/controller/backup/vaultlockconfiguration"
 	vaultnotifications "github.com/upbound/provider-aws/internal/controller/backup/vaultnotifications"
 	vaultpolicy "github.com/upbound/provider-aws/internal/controller/backup/vaultpolicy"
+	jobdefinition "github.com/upbound/provider-aws/internal/controller/batch/jobdefinition"
 	schedulingpolicy "github.com/upbound/provider-aws/internal/controller/batch/schedulingpolicy"
 	budget "github.com/upbound/provider-aws/internal/controller/budgets/budget"
 	budgetaction "github.com/upbound/provider-aws/internal/controller/budgets/budgetaction"
@@ -533,6 +534,7 @@ import (
 	recordingconfiguration "github.com/upbound/provider-aws/internal/controller/ivs/recordingconfiguration"
 	clusterkafka "github.com/upbound/provider-aws/internal/controller/kafka/cluster"
 	configuration "github.com/upbound/provider-aws/internal/controller/kafka/configuration"
+	scramsecretassociation "github.com/upbound/provider-aws/internal/controller/kafka/scramsecretassociation"
 	datasourcekendra "github.com/upbound/provider-aws/internal/controller/kendra/datasource"
 	experience "github.com/upbound/provider-aws/internal/controller/kendra/experience"
 	index "github.com/upbound/provider-aws/internal/controller/kendra/index"
@@ -1040,6 +1042,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		vaultlockconfiguration.Setup,
 		vaultnotifications.Setup,
 		vaultpolicy.Setup,
+		jobdefinition.Setup,
 		schedulingpolicy.Setup,
 		budget.Setup,
 		budgetaction.Setup,
@@ -1449,6 +1452,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		recordingconfiguration.Setup,
 		clusterkafka.Setup,
 		configuration.Setup,
+		scramsecretassociation.Setup,
 		datasourcekendra.Setup,
 		experience.Setup,
 		index.Setup,

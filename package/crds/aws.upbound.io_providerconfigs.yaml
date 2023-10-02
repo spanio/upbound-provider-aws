@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.12.1
+    controller-gen.kubebuilder.io/version: v0.13.0
   name: providerconfigs.aws.upbound.io
 spec:
   group: aws.upbound.io
@@ -296,6 +296,12 @@ spec:
               skip_metadata_api_check:
                 description: Whether to skip the AWS Metadata API check Useful for
                   AWS API implementations that do not have a metadata API endpoint.
+                type: boolean
+              skip_region_validation:
+                description: Whether to skip validation of provided region name. Useful
+                  for AWS-like implementations that use their own region names or
+                  to bypass the validation for regions that aren't publicly available
+                  yet.
                 type: boolean
               skip_requesting_account_id:
                 description: Whether to skip requesting the account ID. Useful for

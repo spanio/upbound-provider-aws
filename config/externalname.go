@@ -1121,6 +1121,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// MSK clusters can be imported using the cluster arn that has a random substring
 	// in the end.
 	"aws_msk_cluster": config.IdentifierFromProvider,
+	// The terraform implementation of MSK SCRAM secret associations assume
+	// that there is a single aws_msk_scram_secret_association per msk
+	// cluster, so the best identifier is the cluster ARN.
+	"aws_msk_scram_secret_association": config.IdentifierFromProvider,
 
 	// ram
 	//
@@ -1561,6 +1565,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	//
 	// Batch Scheduling Policy can be imported using the arn: arn:aws:batch:us-east-1:123456789012:scheduling-policy/sample
 	"aws_batch_scheduling_policy": config.TemplatedStringAsIdentifier("name", "arn:aws:batch:{{ .setup.configuration.region }}:{{ .setup.client_metadata.account_id }}:scheduling-policy/{{ .external_name }}"),
+	// Batch Job Definition can be imported using ARN that has a random substring, revision at the end:
+	// arn:aws:batch:us-east-1:123456789012:job-definition/sample:1
+	"aws_batch_job_definition": config.IdentifierFromProvider,
 
 	// budgets
 	//
