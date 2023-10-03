@@ -5,6 +5,8 @@ Copyright 2021 Upbound Inc.
 package route53
 
 import (
+	"github.com/upbound/provider-aws/config/common"
+
 	"github.com/upbound/upjet/pkg/config"
 )
 
@@ -29,7 +31,7 @@ func Configure(p *config.Provider) {
 		}
 		r.References["key_management_service_arn"] = config.Reference{
 			Type:      "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
-			Extractor: "github.com/upbound/provider-aws/apis/kms/v1beta1.KMSKeyARN()",
+			Extractor: common.PathARNExtractor,
 		}
 	})
 	p.AddResourceConfigurator("aws_route53_query_log", func(r *config.Resource) {

@@ -57,6 +57,7 @@ type LedgerParameters struct {
 
 	// The key in AWS Key Management Service (AWS KMS) to use for encryption of data at rest in the ledger. For more information, see the AWS documentation. Valid values are "AWS_OWNED_KMS_KEY" to use an AWS KMS key that is owned and managed by AWS on your behalf, or the ARN of a valid symmetric customer managed KMS key.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/kms/v1beta1.Key
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-aws/config/common.ARNExtractor()
 	// +kubebuilder:validation:Optional
 	KMSKey *string `json:"kmsKey,omitempty" tf:"kms_key,omitempty"`
 

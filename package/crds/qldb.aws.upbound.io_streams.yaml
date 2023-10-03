@@ -181,7 +181,7 @@ spec:
                     description: The name of the QLDB ledger.
                     type: string
                   ledgerNameRef:
-                    description: Reference to a Ledger in qldb to populate ledgerName.
+                    description: Reference to a Ledger to populate ledgerName.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -215,7 +215,7 @@ spec:
                     - name
                     type: object
                   ledgerNameSelector:
-                    description: Selector for a Ledger in qldb to populate ledgerName.
+                    description: Selector for a Ledger to populate ledgerName.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

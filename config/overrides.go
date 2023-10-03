@@ -142,15 +142,13 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 				}
 			case "kms_key_id":
 				r.References["kms_key_id"] = config.Reference{
-					Type: "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
+					Type:      "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
+					Extractor: common.PathARNExtractor,
 				}
 			case "kms_key_arn":
 				r.References["kms_key_arn"] = config.Reference{
-					Type: "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
-				}
-			case "kms_key":
-				r.References["kms_key"] = config.Reference{
-					Type: "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
+					Type:      "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
+					Extractor: common.PathARNExtractor,
 				}
 			}
 		}

@@ -115,16 +115,16 @@ type StreamParameters struct {
 	KinesisConfiguration []KinesisConfigurationParameters `json:"kinesisConfiguration,omitempty" tf:"kinesis_configuration,omitempty"`
 
 	// The name of the QLDB ledger.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/qldb/v1beta1.Ledger
+	// +crossplane:generate:reference:type=Ledger
 	// +crossplane:generate:reference:extractor=github.com/upbound/provider-aws/config/common.TerraformID()
 	// +kubebuilder:validation:Optional
 	LedgerName *string `json:"ledgerName,omitempty" tf:"ledger_name,omitempty"`
 
-	// Reference to a Ledger in qldb to populate ledgerName.
+	// Reference to a Ledger to populate ledgerName.
 	// +kubebuilder:validation:Optional
 	LedgerNameRef *v1.Reference `json:"ledgerNameRef,omitempty" tf:"-"`
 
-	// Selector for a Ledger in qldb to populate ledgerName.
+	// Selector for a Ledger to populate ledgerName.
 	// +kubebuilder:validation:Optional
 	LedgerNameSelector *v1.Selector `json:"ledgerNameSelector,omitempty" tf:"-"`
 

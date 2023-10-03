@@ -99,8 +99,8 @@ func Configure(p *config.Provider) {
 			Type: "SubnetGroup",
 		}
 		r.References["kms_key_id"] = config.Reference{
-			TerraformName: "aws_kms_key",
-			Extractor:     common.PathARNExtractor,
+			Type:      "github.com/upbound/provider-aws/apis/kms/v1beta1.Key",
+			Extractor: common.PathARNExtractor,
 		}
 		r.UseAsync = true
 		r.LateInitializer = config.LateInitializer{

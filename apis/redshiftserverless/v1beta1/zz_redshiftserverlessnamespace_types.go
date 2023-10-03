@@ -103,6 +103,7 @@ type RedshiftServerlessNamespaceParameters struct {
 
 	// The ARN of the Amazon Web Services Key Management Service key used to encrypt your data.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/kms/v1beta1.Key
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-aws/config/common.ARNExtractor()
 	// +kubebuilder:validation:Optional
 	KMSKeyID *string `json:"kmsKeyId,omitempty" tf:"kms_key_id,omitempty"`
 

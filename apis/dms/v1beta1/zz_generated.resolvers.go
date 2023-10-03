@@ -112,7 +112,7 @@ func (mg *ReplicationInstance) ResolveReferences(ctx context.Context, c client.R
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KMSKeyArn),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ARNExtractor(),
 		Reference:    mg.Spec.ForProvider.KMSKeyArnRef,
 		Selector:     mg.Spec.ForProvider.KMSKeyArnSelector,
 		To: reference.To{
@@ -254,7 +254,7 @@ func (mg *S3Endpoint) ResolveReferences(ctx context.Context, c client.Reader) er
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KMSKeyArn),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ARNExtractor(),
 		Reference:    mg.Spec.ForProvider.KMSKeyArnRef,
 		Selector:     mg.Spec.ForProvider.KMSKeyArnSelector,
 		To: reference.To{

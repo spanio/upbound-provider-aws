@@ -131,7 +131,7 @@ func (mg *Function) ResolveReferences(ctx context.Context, c client.Reader) erro
 	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KMSKeyArn),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ARNExtractor(),
 		Reference:    mg.Spec.ForProvider.KMSKeyArnRef,
 		Selector:     mg.Spec.ForProvider.KMSKeyArnSelector,
 		To: reference.To{
