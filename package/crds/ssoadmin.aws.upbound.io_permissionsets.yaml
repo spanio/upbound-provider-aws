@@ -95,6 +95,7 @@ spec:
                     description: Key-value map of resource tags.
                     type: object
                 required:
+                - instanceArn
                 - region
                 type: object
               initProvider:
@@ -111,10 +112,6 @@ spec:
                 properties:
                   description:
                     description: The description of the Permission Set.
-                    type: string
-                  instanceArn:
-                    description: The Amazon Resource Name (ARN) of the SSO Instance
-                      under which the operation will be executed.
                     type: string
                   name:
                     description: The name of the Permission Set.
@@ -294,10 +291,6 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.instanceArn is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.instanceArn)
-                || (has(self.initProvider) && has(self.initProvider.instanceArn))'
             - message: spec.forProvider.name is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.name)

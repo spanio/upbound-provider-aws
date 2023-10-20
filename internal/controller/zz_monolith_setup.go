@@ -886,6 +886,7 @@ import (
 	customermanagedpolicyattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/customermanagedpolicyattachment"
 	instanceaccesscontrolattributes "github.com/upbound/provider-aws/internal/controller/ssoadmin/instanceaccesscontrolattributes"
 	managedpolicyattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/managedpolicyattachment"
+	permissionsboundaryattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionsboundaryattachment"
 	permissionset "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionset"
 	permissionsetinlinepolicy "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionsetinlinepolicy"
 	domainswf "github.com/upbound/provider-aws/internal/controller/swf/domain"
@@ -1812,6 +1813,7 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		customermanagedpolicyattachment.Setup,
 		instanceaccesscontrolattributes.Setup,
 		managedpolicyattachment.Setup,
+		permissionsboundaryattachment.Setup,
 		permissionset.Setup,
 		permissionsetinlinepolicy.Setup,
 		domainswf.Setup,
