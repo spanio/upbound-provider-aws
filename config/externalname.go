@@ -2468,6 +2468,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// Example: arn:aws:sso:::permissionSet/ssoins-2938j0x8920sbj72/ps-80383020jr9302rk,arn:aws:sso:::instance/ssoins-2938j0x8920sbj72
 	// TODO: Normalize external_name while testing
 	"aws_ssoadmin_permission_set": config.IdentifierFromProvider,
+	// SSO Managed Policy Attachments can be imported using the name, path, permission_set_arn, and instance_arn separated by a comma (,)
+	// Example: TestPolicy,/,arn:aws:sso:::permissionSet/ssoins-2938j0x8920sbj72/ps-80383020jr9302rk,arn:aws:sso:::instance/ssoins-2938j0x8920sbj72
+	"aws_ssoadmin_customer_managed_policy_attachment": config.TemplatedStringAsIdentifier("", "{{  (index .parameters.customer_managed_policy_reference 0).name }},{{ (index .parameters.customer_managed_policy_reference 0).path }},{{ .parameters.permission_set_arn }},{{ .parameters.instance_arn }}"),
+	// SSO Instance Access Control Attributes can be imported using the instance_arn
+	"aws_ssoadmin_instance_access_control_attributes": config.TemplatedStringAsIdentifier("", "{{ .parameters.instance_arn }}"),
 	// SSO Permission Set Inline Policies can be imported using the permission_set_arn and instance_arn separated by a comma (,)
 	// Example: arn:aws:sso:::permissionSet/ssoins-2938j0x8920sbj72/ps-80383020jr9302rk,arn:aws:sso:::instance/ssoins-2938j0x8920sbj72
 	"aws_ssoadmin_permission_set_inline_policy": config.TemplatedStringAsIdentifier("", "{{ .parameters.permission_set_arn }},{{ .parameters.instance_arn }}"),
