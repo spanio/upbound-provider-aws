@@ -8,9 +8,6 @@ import (
 	// Note(ezgidemirel): we are importing this to embed provider schema document
 	_ "embed"
 
-	"github.com/upbound/provider-aws/config/kendra"
-	"github.com/upbound/provider-aws/config/medialive"
-
 	"github.com/crossplane/upjet/pkg/config"
 	"github.com/crossplane/upjet/pkg/registry/reference"
 
@@ -58,7 +55,9 @@ import (
 	"github.com/upbound/provider-aws/config/glue"
 	"github.com/upbound/provider-aws/config/grafana"
 	"github.com/upbound/provider-aws/config/iam"
+	"github.com/upbound/provider-aws/config/identitystore"
 	"github.com/upbound/provider-aws/config/kafka"
+	"github.com/upbound/provider-aws/config/kendra"
 	"github.com/upbound/provider-aws/config/kinesis"
 	"github.com/upbound/provider-aws/config/kinesisanalytics"
 	kinesisanalytics2 "github.com/upbound/provider-aws/config/kinesisanalyticsv2"
@@ -66,6 +65,7 @@ import (
 	"github.com/upbound/provider-aws/config/lakeformation"
 	"github.com/upbound/provider-aws/config/lambda"
 	"github.com/upbound/provider-aws/config/licensemanager"
+	"github.com/upbound/provider-aws/config/medialive"
 	"github.com/upbound/provider-aws/config/memorydb"
 	"github.com/upbound/provider-aws/config/mq"
 	"github.com/upbound/provider-aws/config/neptune"
@@ -233,6 +233,7 @@ func GetProvider() *config.Provider {
 		kendra.Configure,
 		medialive.Configure,
 		ssoadmin.Configure,
+		identitystore.Configure,
 	} {
 		configure(pc)
 	}
