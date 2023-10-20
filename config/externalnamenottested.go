@@ -753,8 +753,6 @@ var ExternalNameNotTestedConfigs = map[string]config.ExternalName{
 
 	// ssoadmin
 	//
-	// SSO Admin Permissions Boundary Attachments can be imported using the permission_set_arn and instance_arn, separated by a comma (,)
-	"aws_ssoadmin_permissions_boundary_attachment": config.IdentifierFromProvider,
 
 	// transcribe
 	//
