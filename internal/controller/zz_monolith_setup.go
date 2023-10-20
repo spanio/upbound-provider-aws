@@ -508,6 +508,9 @@ import (
 	userpolicyattachment "github.com/upbound/provider-aws/internal/controller/iam/userpolicyattachment"
 	usersshkey "github.com/upbound/provider-aws/internal/controller/iam/usersshkey"
 	virtualmfadevice "github.com/upbound/provider-aws/internal/controller/iam/virtualmfadevice"
+	groupidentitystore "github.com/upbound/provider-aws/internal/controller/identitystore/group"
+	groupmembershipidentitystore "github.com/upbound/provider-aws/internal/controller/identitystore/groupmembership"
+	useridentitystore "github.com/upbound/provider-aws/internal/controller/identitystore/user"
 	component "github.com/upbound/provider-aws/internal/controller/imagebuilder/component"
 	containerrecipe "github.com/upbound/provider-aws/internal/controller/imagebuilder/containerrecipe"
 	distributionconfiguration "github.com/upbound/provider-aws/internal/controller/imagebuilder/distributionconfiguration"
@@ -1429,6 +1432,9 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		userpolicyattachment.Setup,
 		usersshkey.Setup,
 		virtualmfadevice.Setup,
+		groupidentitystore.Setup,
+		groupmembershipidentitystore.Setup,
+		useridentitystore.Setup,
 		component.Setup,
 		containerrecipe.Setup,
 		distributionconfiguration.Setup,
