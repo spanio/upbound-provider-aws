@@ -101,6 +101,174 @@ func (tr *AccountAssignment) GetTerraformSchemaVersion() int {
 	return 0
 }
 
+// GetTerraformResourceType returns Terraform resource type for this CustomerManagedPolicyAttachment
+func (mg *CustomerManagedPolicyAttachment) GetTerraformResourceType() string {
+	return "aws_ssoadmin_customer_managed_policy_attachment"
+}
+
+// GetConnectionDetailsMapping for this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this CustomerManagedPolicyAttachment
+func (tr *CustomerManagedPolicyAttachment) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this CustomerManagedPolicyAttachment using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *CustomerManagedPolicyAttachment) LateInitialize(attrs []byte) (bool, error) {
+	params := &CustomerManagedPolicyAttachmentParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *CustomerManagedPolicyAttachment) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this InstanceAccessControlAttributes
+func (mg *InstanceAccessControlAttributes) GetTerraformResourceType() string {
+	return "aws_ssoadmin_instance_access_control_attributes"
+}
+
+// GetConnectionDetailsMapping for this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this InstanceAccessControlAttributes
+func (tr *InstanceAccessControlAttributes) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this InstanceAccessControlAttributes using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *InstanceAccessControlAttributes) LateInitialize(attrs []byte) (bool, error) {
+	params := &InstanceAccessControlAttributesParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *InstanceAccessControlAttributes) GetTerraformSchemaVersion() int {
+	return 0
+}
+
 // GetTerraformResourceType returns Terraform resource type for this ManagedPolicyAttachment
 func (mg *ManagedPolicyAttachment) GetTerraformResourceType() string {
 	return "aws_ssoadmin_managed_policy_attachment"

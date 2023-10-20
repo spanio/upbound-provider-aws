@@ -10,6 +10,8 @@ import (
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	resource "github.com/crossplane/upjet/pkg/resource"
 	errors "github.com/pkg/errors"
+	v1beta11 "github.com/upbound/provider-aws/apis/iam/v1beta1"
+	v1beta1 "github.com/upbound/provider-aws/apis/identitystore/v1beta1"
 	common "github.com/upbound/provider-aws/config/common"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -24,6 +26,82 @@ func (mg *AccountAssignment) ResolveReferences(ctx context.Context, c client.Rea
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PermissionSetArn),
 		Extract:      common.ARNExtractor(),
+		Reference:    mg.Spec.ForProvider.PermissionSetArnRef,
+		Selector:     mg.Spec.ForProvider.PermissionSetArnSelector,
+		To: reference.To{
+			List:    &PermissionSetList{},
+			Managed: &PermissionSet{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.PermissionSetArn")
+	}
+	mg.Spec.ForProvider.PermissionSetArn = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.PermissionSetArnRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrincipalID),
+		Extract:      resource.ExtractParamPath("group_id", true),
+		Reference:    mg.Spec.ForProvider.PrincipalGroupRef,
+		Selector:     mg.Spec.ForProvider.PrincipalGroupSelector,
+		To: reference.To{
+			List:    &v1beta1.GroupList{},
+			Managed: &v1beta1.Group{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.PrincipalID")
+	}
+	mg.Spec.ForProvider.PrincipalID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.PrincipalGroupRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this CustomerManagedPolicyAttachment.
+func (mg *CustomerManagedPolicyAttachment) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.CustomerManagedPolicyReference); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CustomerManagedPolicyReference[i3].Name),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.CustomerManagedPolicyReference[i3].PolicyNameRef,
+			Selector:     mg.Spec.ForProvider.CustomerManagedPolicyReference[i3].PolicyNameSelector,
+			To: reference.To{
+				List:    &v1beta11.PolicyList{},
+				Managed: &v1beta11.Policy{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.CustomerManagedPolicyReference[i3].Name")
+		}
+		mg.Spec.ForProvider.CustomerManagedPolicyReference[i3].Name = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.CustomerManagedPolicyReference[i3].PolicyNameRef = rsp.ResolvedReference
+
+	}
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.InstanceArn),
+		Extract:      resource.ExtractParamPath("instance_arn", false),
+		Reference:    mg.Spec.ForProvider.InstanceArnRef,
+		Selector:     mg.Spec.ForProvider.InstanceArnSelector,
+		To: reference.To{
+			List:    &PermissionSetList{},
+			Managed: &PermissionSet{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.InstanceArn")
+	}
+	mg.Spec.ForProvider.InstanceArn = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.InstanceArnRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PermissionSetArn),
+		Extract:      resource.ExtractParamPath("arn", true),
 		Reference:    mg.Spec.ForProvider.PermissionSetArnRef,
 		Selector:     mg.Spec.ForProvider.PermissionSetArnSelector,
 		To: reference.To{
@@ -72,6 +150,22 @@ func (mg *PermissionSetInlinePolicy) ResolveReferences(ctx context.Context, c cl
 
 	var rsp reference.ResolutionResponse
 	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.InstanceArn),
+		Extract:      resource.ExtractParamPath("instance_arn", false),
+		Reference:    mg.Spec.ForProvider.InstanceArnRef,
+		Selector:     mg.Spec.ForProvider.InstanceArnSelector,
+		To: reference.To{
+			List:    &PermissionSetList{},
+			Managed: &PermissionSet{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.InstanceArn")
+	}
+	mg.Spec.ForProvider.InstanceArn = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.InstanceArnRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PermissionSetArn),

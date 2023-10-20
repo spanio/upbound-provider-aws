@@ -883,6 +883,8 @@ import (
 	resourcedatasync "github.com/upbound/provider-aws/internal/controller/ssm/resourcedatasync"
 	servicesetting "github.com/upbound/provider-aws/internal/controller/ssm/servicesetting"
 	accountassignment "github.com/upbound/provider-aws/internal/controller/ssoadmin/accountassignment"
+	customermanagedpolicyattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/customermanagedpolicyattachment"
+	instanceaccesscontrolattributes "github.com/upbound/provider-aws/internal/controller/ssoadmin/instanceaccesscontrolattributes"
 	managedpolicyattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/managedpolicyattachment"
 	permissionset "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionset"
 	permissionsetinlinepolicy "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionsetinlinepolicy"
@@ -1807,6 +1809,8 @@ func Setup_monolith(mgr ctrl.Manager, o controller.Options) error {
 		resourcedatasync.Setup,
 		servicesetting.Setup,
 		accountassignment.Setup,
+		customermanagedpolicyattachment.Setup,
+		instanceaccesscontrolattributes.Setup,
 		managedpolicyattachment.Setup,
 		permissionset.Setup,
 		permissionsetinlinepolicy.Setup,

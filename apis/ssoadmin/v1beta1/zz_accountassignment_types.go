@@ -64,9 +64,21 @@ type AccountAssignmentParameters struct {
 	// +kubebuilder:validation:Optional
 	PermissionSetArnSelector *v1.Selector `json:"permissionSetArnSelector,omitempty" tf:"-"`
 
+	// Reference to a Group in identitystore to populate principalId.
+	// +kubebuilder:validation:Optional
+	PrincipalGroupRef *v1.Reference `json:"principalGroupRef,omitempty" tf:"-"`
+
+	// Selector for a Group in identitystore to populate principalId.
+	// +kubebuilder:validation:Optional
+	PrincipalGroupSelector *v1.Selector `json:"principalGroupSelector,omitempty" tf:"-"`
+
 	// An identifier for an object in SSO, such as a user or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
-	// +kubebuilder:validation:Required
-	PrincipalID *string `json:"principalId" tf:"principal_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/identitystore/v1beta1.Group
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractParamPath("group_id",true)
+	// +crossplane:generate:reference:refFieldName=PrincipalGroupRef
+	// +crossplane:generate:reference:selectorFieldName=PrincipalGroupSelector
+	// +kubebuilder:validation:Optional
+	PrincipalID *string `json:"principalId,omitempty" tf:"principal_id,omitempty"`
 
 	// The entity type for which the assignment will be created. Valid values: USER, GROUP.
 	// +kubebuilder:validation:Required

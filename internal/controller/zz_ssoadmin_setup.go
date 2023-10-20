@@ -10,6 +10,8 @@ import (
 	"github.com/crossplane/upjet/pkg/controller"
 
 	accountassignment "github.com/upbound/provider-aws/internal/controller/ssoadmin/accountassignment"
+	customermanagedpolicyattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/customermanagedpolicyattachment"
+	instanceaccesscontrolattributes "github.com/upbound/provider-aws/internal/controller/ssoadmin/instanceaccesscontrolattributes"
 	managedpolicyattachment "github.com/upbound/provider-aws/internal/controller/ssoadmin/managedpolicyattachment"
 	permissionset "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionset"
 	permissionsetinlinepolicy "github.com/upbound/provider-aws/internal/controller/ssoadmin/permissionsetinlinepolicy"
@@ -20,6 +22,8 @@ import (
 func Setup_ssoadmin(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		accountassignment.Setup,
+		customermanagedpolicyattachment.Setup,
+		instanceaccesscontrolattributes.Setup,
 		managedpolicyattachment.Setup,
 		permissionset.Setup,
 		permissionsetinlinepolicy.Setup,
