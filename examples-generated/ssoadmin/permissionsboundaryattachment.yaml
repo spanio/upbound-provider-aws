@@ -8,9 +8,7 @@ metadata:
   name: example
 spec:
   forProvider:
-    instanceArnSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    instanceArn: ${aws_ssoadmin_permission_set.example.instance_arn}
     permissionSetArnSelector:
       matchLabels:
         testing.upbound.io/example-name: example

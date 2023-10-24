@@ -456,16 +456,6 @@ func (in *CustomerManagedPolicyAttachmentParameters) DeepCopyInto(out *CustomerM
 		*out = new(string)
 		**out = **in
 	}
-	if in.InstanceArnRef != nil {
-		in, out := &in.InstanceArnRef, &out.InstanceArnRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.InstanceArnSelector != nil {
-		in, out := &in.InstanceArnSelector, &out.InstanceArnSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.PermissionSetArn != nil {
 		in, out := &in.PermissionSetArn, &out.PermissionSetArn
 		*out = new(string)
@@ -1202,16 +1192,6 @@ func (in *PermissionSetInlinePolicyParameters) DeepCopyInto(out *PermissionSetIn
 		*out = new(string)
 		**out = **in
 	}
-	if in.InstanceArnRef != nil {
-		in, out := &in.InstanceArnRef, &out.InstanceArnRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.InstanceArnSelector != nil {
-		in, out := &in.InstanceArnSelector, &out.InstanceArnSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.PermissionSetArn != nil {
 		in, out := &in.PermissionSetArn, &out.PermissionSetArn
 		*out = new(string)
@@ -1619,16 +1599,6 @@ func (in *PermissionsBoundaryAttachmentParameters) DeepCopyInto(out *Permissions
 		in, out := &in.InstanceArn, &out.InstanceArn
 		*out = new(string)
 		**out = **in
-	}
-	if in.InstanceArnRef != nil {
-		in, out := &in.InstanceArnRef, &out.InstanceArnRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.InstanceArnSelector != nil {
-		in, out := &in.InstanceArnSelector, &out.InstanceArnSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.PermissionSetArn != nil {
 		in, out := &in.PermissionSetArn, &out.PermissionSetArn
