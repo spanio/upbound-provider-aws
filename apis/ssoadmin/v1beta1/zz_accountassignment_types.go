@@ -66,8 +66,8 @@ type AccountAssignmentParameters struct {
 
 	// An identifier for an object in SSO, such as a user or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6). This can be set to the crossplane external-name of either a Group or User in the identitystore api group, but the Ref and Selector fields will only work with a Group.
 	// +crossplane:generate:reference:type=github.com/upbound/provider-aws/apis/identitystore/v1beta1.Group
-	// +crossplane:generate:reference:refFieldName=PrincipalIdFromGroupRef
-	// +crossplane:generate:reference:selectorFieldName=PrincipalIdFromGroupSelector
+	// +crossplane:generate:reference:refFieldName=PrincipalIDFromGroupRef
+	// +crossplane:generate:reference:selectorFieldName=PrincipalIDFromGroupSelector
 	// +kubebuilder:validation:Optional
 	PrincipalID *string `json:"principalId,omitempty" tf:"principal_id,omitempty"`
 

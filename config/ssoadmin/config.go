@@ -11,8 +11,8 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("aws_ssoadmin_account_assignment", func(r *config.Resource) {
 		r.References["principal_id"] = config.Reference{
 			TerraformName:     "aws_identitystore_group",
-			RefFieldName:      "PrincipalIdFromGroupRef",
-			SelectorFieldName: "PrincipalIdFromGroupSelector",
+			RefFieldName:      "PrincipalIDFromGroupRef",
+			SelectorFieldName: "PrincipalIDFromGroupSelector",
 		}
 		r.MetaResource.ArgumentDocs["principal_id"] = "- (Required) An identifier for an object in SSO, such as a " +
 			"user or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6). This can be " +
