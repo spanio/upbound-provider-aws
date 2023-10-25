@@ -149,7 +149,14 @@ spec:
                             type: string
                         type: object
                     type: object
-                  principalGroupRef:
+                  principalId:
+                    description: An identifier for an object in SSO, such as a user
+                      or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
+                      This can be set to the crossplane external-name of either a
+                      Group or User in the identitystore api group, but the Ref and
+                      Selector fields will only work with a Group.
+                    type: string
+                  principalIdFromGroupRef:
                     description: Reference to a Group in identitystore to populate
                       principalId.
                     properties:
@@ -184,7 +191,7 @@ spec:
                     required:
                     - name
                     type: object
-                  principalGroupSelector:
+                  principalIdFromGroupSelector:
                     description: Selector for a Group in identitystore to populate
                       principalId.
                     properties:
@@ -224,10 +231,6 @@ spec:
                             type: string
                         type: object
                     type: object
-                  principalId:
-                    description: An identifier for an object in SSO, such as a user
-                      or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
-                    type: string
                   principalType:
                     description: 'The entity type for which the assignment will be
                       created. Valid values: USER, GROUP.'
@@ -442,6 +445,9 @@ spec:
                   principalId:
                     description: An identifier for an object in SSO, such as a user
                       or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6).
+                      This can be set to the crossplane external-name of either a
+                      Group or User in the identitystore api group, but the Ref and
+                      Selector fields will only work with a Group.
                     type: string
                   principalType:
                     description: 'The entity type for which the assignment will be

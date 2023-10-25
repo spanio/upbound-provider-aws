@@ -41,9 +41,9 @@ func (mg *AccountAssignment) ResolveReferences(ctx context.Context, c client.Rea
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrincipalID),
-		Extract:      resource.ExtractParamPath("group_id", true),
-		Reference:    mg.Spec.ForProvider.PrincipalGroupRef,
-		Selector:     mg.Spec.ForProvider.PrincipalGroupSelector,
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.PrincipalIdFromGroupRef,
+		Selector:     mg.Spec.ForProvider.PrincipalIdFromGroupSelector,
 		To: reference.To{
 			List:    &v1beta1.GroupList{},
 			Managed: &v1beta1.Group{},
@@ -53,7 +53,7 @@ func (mg *AccountAssignment) ResolveReferences(ctx context.Context, c client.Rea
 		return errors.Wrap(err, "mg.Spec.ForProvider.PrincipalID")
 	}
 	mg.Spec.ForProvider.PrincipalID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.PrincipalGroupRef = rsp.ResolvedReference
+	mg.Spec.ForProvider.PrincipalIdFromGroupRef = rsp.ResolvedReference
 
 	return nil
 }

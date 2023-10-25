@@ -160,20 +160,20 @@ func (in *AccountAssignmentParameters) DeepCopyInto(out *AccountAssignmentParame
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
-	if in.PrincipalGroupRef != nil {
-		in, out := &in.PrincipalGroupRef, &out.PrincipalGroupRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.PrincipalGroupSelector != nil {
-		in, out := &in.PrincipalGroupSelector, &out.PrincipalGroupSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.PrincipalID != nil {
 		in, out := &in.PrincipalID, &out.PrincipalID
 		*out = new(string)
 		**out = **in
+	}
+	if in.PrincipalIDFromGroupRef != nil {
+		in, out := &in.PrincipalIDFromGroupRef, &out.PrincipalIDFromGroupRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PrincipalIDFromGroupSelector != nil {
+		in, out := &in.PrincipalIDFromGroupSelector, &out.PrincipalIDFromGroupSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.PrincipalType != nil {
 		in, out := &in.PrincipalType, &out.PrincipalType
