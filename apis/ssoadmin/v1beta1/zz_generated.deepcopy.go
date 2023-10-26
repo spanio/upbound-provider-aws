@@ -1022,6 +1022,11 @@ func (in *PermissionSetInitParameters) DeepCopyInto(out *PermissionSetInitParame
 		*out = new(string)
 		**out = **in
 	}
+	if in.InstanceArn != nil {
+		in, out := &in.InstanceArn, &out.InstanceArn
+		*out = new(string)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)

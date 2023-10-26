@@ -2868,8 +2868,8 @@ func SsoPermissionSet() config.ExternalName {
 
 			return fmt.Sprintf("arn:aws:sso:::permissionSet/%s/%s,%s", instanceId, externalName, iaStr), nil
 		},
-		GetExternalNameFn:      getPermissionSetId,
-		IdentifierFields:       []string{"instance_arn"},
+		GetExternalNameFn: getPermissionSetId,
+		//IdentifierFields:       []string{"instance_arn"},
 		DisableNameInitializer: true,
 	}
 }

@@ -22,6 +22,9 @@ type PermissionSetInitParameters struct {
 	// The description of the Permission Set.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The Amazon Resource Name (ARN) of the SSO Instance under which the operation will be executed.
+	InstanceArn *string `json:"instanceArn,omitempty" tf:"instance_arn,omitempty"`
+
 	// The name of the Permission Set.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -75,8 +78,8 @@ type PermissionSetParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// The Amazon Resource Name (ARN) of the SSO Instance under which the operation will be executed.
-	// +kubebuilder:validation:Required
-	InstanceArn *string `json:"instanceArn" tf:"instance_arn,omitempty"`
+	// +kubebuilder:validation:Optional
+	InstanceArn *string `json:"instanceArn,omitempty" tf:"instance_arn,omitempty"`
 
 	// The name of the Permission Set.
 	// +kubebuilder:validation:Optional
@@ -135,6 +138,7 @@ type PermissionSetStatus struct {
 type PermissionSet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.instanceArn) || (has(self.initProvider) && has(self.initProvider.instanceArn))",message="spec.forProvider.instanceArn is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	Spec   PermissionSetSpec   `json:"spec"`
 	Status PermissionSetStatus `json:"status,omitempty"`
