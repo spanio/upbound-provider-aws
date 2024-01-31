@@ -39,6 +39,9 @@ spec:
     region: us-east-2
     tags:
       foo: bar
+  writeConnectionSecretToRef:
+    name: example-msk-cluster
+    namespace: upbound-system
 
 ---
 
